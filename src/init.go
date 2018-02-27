@@ -9,7 +9,7 @@ import (
 
 
 var (
-	C Config
+	Conf Config
 	Req Request
 	Res Response
 )
@@ -21,7 +21,7 @@ func init() {
 		fmt.Print(err)
 	}
 
-	err = json.Unmarshal(byteConf, &C)
+	err = json.Unmarshal(byteConf, &Conf)
 
 	if err != nil {
 		fmt.Print(err)

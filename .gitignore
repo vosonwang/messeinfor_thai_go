@@ -10,5 +10,5 @@ gen
 .DS_Store
 vendor
 bin
-input
-output
+input/zh-CN/*
+conf/baidu.json

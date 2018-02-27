@@ -1,0 +1,14 @@
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+.idea/inspectionProfiles/
+.idea/workspace.xml
+
+
+.DS_Store
+vendor
+bin
+input
+output

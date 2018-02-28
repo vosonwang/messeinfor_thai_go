@@ -1,52 +1,48 @@
 package main
 
 import (
+	"path/filepath"
+	"os"
+	"strings"
 	"fmt"
-	"io/ioutil"
-	"net/http"
-	"encoding/json"
-	"crypto/md5"
-	"encoding/hex"
-	"strconv"
 )
 
 func main() {
 
-	Grap()
+	// 扫描input文件夹
+	filepath.Walk(Conf.Input,
+		//逐个读取文件
+		func(path string, f os.FileInfo, err error) error {
+			if f == nil {
+				return err
+			}
+			if f.IsDir() {
+				// 如果读取的文件路径是文件夹，则在output文件夹下创建对应语言的文件夹，
+				targetPath := strings.Replace(path, Conf.Input, Conf.Output, -1)
 
-	Req.Query = "测试"
-	Req.From = "zh"
-	Req.To = "th"
-	Req.Salt = 1435660288
+				err := os.MkdirAll(targetPath, 0777)
 
-	/*获取Sign*/
-	str1 := strconv.Itoa(Conf.AppID) + Req.Query + strconv.Itoa(Req.Salt) + Conf.Key;
+				if err != nil {
+					fmt.Printf("%s", err)
+				} else {
+					fmt.Print("Create Directory OK!")
+				}
 
-	//fmt.Print(str1+"\n")
+			} else {
+				//如果不是文件夹，则开始读取文件
 
-	//计算Sign的md5
-	md5Ctx := md5.New()
-	md5Ctx.Write([]byte(str1))
-	cipherStr := md5Ctx.Sum(nil)
+				if !strings.Contains(path, ".DS_Store") &&
+					!strings.Contains(path, ".gitkeep") {
 
-	Req.Sign = hex.EncodeToString(cipherStr)
+					//fmt.Println("file:", path)
+					//fmt.Println("name:", f.Name())
 
-	t := fmt.Sprintf("?q=%s&from=%s&to=%s&appid=%d&salt=%d&sign=%s", Req.Query, Req.From, Req.To, Conf.AppID, Req.Salt, Req.Sign)
+					//读取文件，用正则匹配所有的中文片段，每个片段逐个调用翻译函数
+					Grab(path, f.Name())
+				}
+			}
 
-	resp, err := http.Get(Conf.URL + t)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+			return nil
+		})
 
-	//fmt.Print(string(body)+"\n")
-
-	err = json.Unmarshal(body, &Res)
-
-	if err != nil {
-		fmt.Print(err)
-	}
-
-	fmt.Print(Res)
 }

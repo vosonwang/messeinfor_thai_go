@@ -4,18 +4,21 @@ import (
 	"io/ioutil"
 	"fmt"
 	"encoding/json"
+	"log"
 )
 
 
 
 var (
 	Conf Config
-	Req Request
 	Res Response
 )
 
 func init() {
-	byteConf, err := ioutil.ReadFile("conf/baidu.json")
+	/*log*/
+	log.SetFlags(log.Ldate | log.Lmicroseconds | log.Llongfile)
+
+	byteConf, err := ioutil.ReadFile("conf/config.json")
 
 	if err != nil {
 		fmt.Print(err)

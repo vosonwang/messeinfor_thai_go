@@ -1,7 +1,7 @@
 # IntelliJ project files
 .idea
 *.iml
-out
+output
 gen
 .idea/inspectionProfiles/
 .idea/workspace.xml

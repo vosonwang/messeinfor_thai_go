@@ -1,0 +1,10 @@
+{
+  "input":"input/",
+  "output":"output/",
+  "from":"zh",
+  "to":"th",
+  "url": "http://api.fanyi.baidu.com/api/trans/vip/translate",
+  "ssl": "https://fanyi-api.baidu.com/api/trans/vip/translate",
+  "app_id": 20180227000128298,
+  "key": "IAlQRPU980sqd_qYlZMq"
+}

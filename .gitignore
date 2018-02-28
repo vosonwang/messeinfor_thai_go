@@ -7,8 +7,8 @@ gen
 
 
 .DS_Store
-vendor
-bin
-input/*
-output/*
-conf/prod.json
+/vendor/
+/bin/
+/conf/prod.json
+/input/
+/output/

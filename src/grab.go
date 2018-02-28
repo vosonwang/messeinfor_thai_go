@@ -8,7 +8,7 @@ import (
 )
 
 // 抓取文本中需要翻译的中文
-func Grab(filePath, fileName string) {
+func Grab(filePath string) {
 	//读取文件
 	byteStr, err := ioutil.ReadFile(filePath)
 
@@ -26,5 +26,5 @@ func Grab(filePath, fileName string) {
 	//用output文件夹替换input的文件夹名，获取目标路径
 	targetPath := strings.Replace(filePath, Conf.Input, Conf.Output, -1)
 
-	generate(out, targetPath, fileName)
+	generate(out, targetPath)
 }

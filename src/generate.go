@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func generate(b []byte, targetPath, fileName string) {
+func generate(b []byte, targetPath string) {
 	var f *os.File
 
 	defer f.Close()

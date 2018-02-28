@@ -38,7 +38,7 @@ func main() {
 					//fmt.Println("name:", f.Name())
 
 					//读取文件，用正则匹配所有的中文片段，每个片段逐个调用翻译函数
-					Grab(path, f.Name())
+					Grab(path)
 				}
 			}
 

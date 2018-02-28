@@ -1,7 +1,6 @@
 # IntelliJ project files
 .idea
 *.iml
-output
 gen
 .idea/inspectionProfiles/
 .idea/workspace.xml
@@ -10,5 +9,6 @@ gen
 .DS_Store
 vendor
 bin
-input/zh-CN/*
-conf/baidu.json
+input/*
+output/*
+conf/prod.json

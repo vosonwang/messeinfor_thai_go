@@ -1,0 +1,12 @@
+{
+  "README":"注意：1.通过input，output配置输入、输出文件夹 2.exclude选择中可以设置根据文件后缀名排除不需要翻译的文件，可以配置多项，用英文逗号分隔 3.from和to分别指输入语言和输出语言，如果输入语言无法确定，可以填auto",
+  "input":"input/",
+  "output":"output/",
+  "exclude":"",
+  "from":"zh",
+  "to":"th",
+  "url": "http://api.fanyi.baidu.com/api/trans/vip/translate",
+  "ssl": "https://fanyi-api.baidu.com/api/trans/vip/translate",
+  "app_id": 2015063000000001,
+  "key": "12345678"
+}

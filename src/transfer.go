@@ -20,7 +20,7 @@ func transfer(b []byte) []byte {
 	/*获取Sign*/
 	str1 := strconv.Itoa(Conf.AppID) + query + strconv.FormatInt(salt, 10) + Conf.Key
 
-	//fmt.Print(str1+"\n")
+	//fmt.Println(str1+"\n")
 
 	//计算Sign的md5
 	md5Ctx := md5.New()
@@ -31,6 +31,7 @@ func transfer(b []byte) []byte {
 
 	t := fmt.Sprintf("?q=%s&from=%s&to=%s&appid=%d&salt=%d&sign=%s", query, Conf.From, Conf.To, Conf.AppID, salt, Sign)
 
+
 	resp, err := http.Get(Conf.URL + t)
 	if err != nil {
 		panic(err)
@@ -38,12 +39,12 @@ func transfer(b []byte) []byte {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 
-	//fmt.Print(string(body)+"\n")
+	//fmt.Println(string(body)+"\n")
 
 	err = json.Unmarshal(body, &Res)
 
 	if err != nil {
-		fmt.Print(err)
+		fmt.Println(err)
 	}
 
 	return []byte(Res.TransResult[0].Dst)
